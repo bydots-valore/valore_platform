@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bydots — The VALORE Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+
+/* ════════════════════════════════════════════
+   platform.html — page-specific styles
+════════════════════════════════════════════ */
+
+/* ── NODE GRAPH AMBIENT DECORATION ─────── */
+.node-graph {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.07;
+}
+
+/* ── HERO ───────────────────────────────── */
+.hero {
+  background: var(--ink);
+  padding: 120px 0;
+  position: relative;
+  overflow: hidden;
+}
+.hero .node-graph {
+  right: -80px;
+  top: -60px;
+  width: 640px;
+  height: 640px;
+  opacity: 0.09;
+}
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+  position: relative;
+  z-index: 1;
+}
+.hero .section-eyebrow {
+  margin-bottom: 24px;
+}
+.hero-h1 {
+  font-family: 'Fraunces', serif;
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  color: var(--white);
+  max-width: 760px;
+  margin-bottom: 24px;
+}
+.hero-h1 em {
+  font-style: italic;
+  color: var(--amber);
+}
+.hero-sub {
+  font-size: 19px;
+  color: rgba(250,250,250,0.7);
+  line-height: 1.65;
+  max-width: 580px;
+  margin-bottom: 40px;
+}
+.hero-cta {
+  margin-bottom: 56px;
+}
+.thesis-box {
+  display: inline-block;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,122,26,0.25);
+  border-radius: 10px;
+  padding: 28px 36px;
+  max-width: 560px;
+  box-shadow: 0 0 48px rgba(255,122,26,0.08), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.thesis-box p {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-style: italic;
+  color: var(--paper);
+  line-height: 1.55;
+}
+.thesis-box p strong {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--amber);
+}
+
+/* ── CAPABILITIES ───────────────────────── */
+.section-capabilities {
+  background: var(--paper);
+  padding: 100px 0;
+}
+.cap-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-top: 48px;
+}
+.cap-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 24px 22px 28px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+.cap-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--white);
+  background: var(--ink);
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+.cap-title {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+.cap-desc {
+  font-size: 14px;
+  color: var(--steel);
+  line-height: 1.6;
+}
+
+/* ── THE SYSTEM ─────────────────────────── */
+.section-system {
+  background: var(--white);
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+.section-system .node-graph {
+  left: -120px;
+  bottom: -80px;
+  width: 500px;
+  height: 500px;
+  opacity: 0.05;
+}
+.system-header {
+  max-width: 640px;
+  margin-bottom: 48px;
+}
+.system-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+}
+.sys-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--orange);
+  border-radius: 8px;
+  padding: 32px 28px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+.sys-card-title {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.sys-card-desc {
+  font-size: 15px;
+  color: var(--graphite);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+.sys-examples {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.sys-example {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--steel);
+}
+.sys-example::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  background: var(--orange);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.input-modes-bar {
+  background: var(--mist);
+  border-radius: 8px;
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.input-modes-lead {
+  font-family: 'Fraunces', serif;
+  font-size: 15px;
+  font-style: italic;
+  color: var(--ink);
+  flex-shrink: 0;
+}
+.input-mode-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.mode-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ink);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 5px 13px;
+  letter-spacing: 0.02em;
+}
+
+/* ── KNOWLEDGE FLOWS ────────────────────── */
+.section-flows {
+  background: var(--ink);
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+.section-flows .node-graph {
+  right: -100px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 560px;
+  height: 560px;
+  opacity: 0.07;
+}
+.flows-header {
+  max-width: 640px;
+  margin-bottom: 56px;
+}
+.flows-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 36px;
+}
+.flow-card {
+  border-radius: 10px;
+  padding: 36px 32px;
+}
+.flow-card.linear {
+  background: var(--mist);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.flow-card.loop {
+  background: var(--peach);
+  border: 1px solid var(--peachln);
+}
+.flow-card-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--steel);
+  margin-bottom: 10px;
+}
+.flow-card.loop .flow-card-eyebrow {
+  color: var(--orange);
+}
+.flow-card-title {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.flow-card-desc {
+  font-size: 15px;
+  color: var(--graphite);
+  line-height: 1.65;
+  margin-bottom: 28px;
+}
+
+/* Flow chain diagrams */
+.flow-chain {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 24px;
+}
+.flow-node {
+  flex: 1;
+  text-align: center;
+  border-radius: 6px;
+  padding: 12px 8px;
+}
+.flow-node.src-node {
+  background: rgba(107,107,112,0.15);
+  border: 1px solid rgba(107,107,112,0.3);
+}
+.flow-node.valore-node {
+  background: var(--ink);
+  border: 1px solid rgba(255,122,26,0.4);
+}
+.flow-card.loop .flow-node.valore-node {
+  background: rgba(10,10,10,0.85);
+}
+.flow-node.result-node {
+  background: rgba(245,184,41,0.15);
+  border: 1px solid rgba(245,184,41,0.35);
+}
+.flow-node-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--steel);
+  display: block;
+  margin-bottom: 4px;
+}
+.flow-node.valore-node .flow-node-label {
+  color: var(--amber);
+}
+.flow-node.result-node .flow-node-label {
+  color: var(--orange);
+}
+.flow-node-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.flow-node.valore-node .flow-node-text {
+  color: var(--white);
+}
+.flow-arrow {
+  color: var(--orange);
+  font-size: 14px;
+  padding: 0 6px;
+  flex-shrink: 0;
+  font-weight: 700;
+}
+.flow-feedback {
+  border: 1.5px dashed var(--orange);
+  border-radius: 6px;
+  padding: 10px 14px;
+  text-align: center;
+  background: rgba(255,122,26,0.06);
+  margin-bottom: 24px;
+}
+.flow-feedback-text {
+  font-size: 12px;
+  color: var(--graphite);
+  line-height: 1.5;
+}
+.flow-feedback-text strong {
+  color: var(--orange);
+  font-weight: 600;
+}
+.flow-examples {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.flow-example {
+  font-size: 13px;
+  color: var(--steel);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.flow-example::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  background: var(--orange);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.flow-card.loop .flow-example {
+  color: var(--graphite);
+}
+
+.flows-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(250,250,250,0.6);
+  transition: color 0.15s;
+  position: relative;
+  z-index: 1;
+}
+.flows-link:hover {
+  color: var(--paper);
+}
+.flows-link .arrow {
+  color: var(--orange);
+  transition: transform 0.15s;
+}
+.flows-link:hover .arrow {
+  transform: translateX(3px);
+}
+
+/* ── ACCESS ROUTES ──────────────────────── */
+.section-routes {
+  background: var(--paper);
+  padding: 100px 0;
+}
+.routes-header {
+  max-width: 640px;
+  margin-bottom: 24px;
+}
+.depth-bar {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 52px;
+  max-width: 520px;
+}
+.depth-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--steel);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.depth-track {
+  flex: 1;
+  height: 3px;
+  margin: 0 16px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--amber) 0%, var(--orange) 100%);
+}
+.routes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.route-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--orange);
+  border-radius: 8px;
+  padding: 32px 28px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+}
+.route-card-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 8px;
+}
+.route-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--white);
+  background: var(--ink);
+  padding: 4px 8px;
+  border-radius: 5px;
+  flex-shrink: 0;
+}
+.route-name {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+.route-tagline {
+  font-family: 'Fraunces', serif;
+  font-size: 14px;
+  font-style: italic;
+  color: var(--orange);
+  margin-bottom: 14px;
+}
+.route-desc {
+  font-size: 14px;
+  color: var(--graphite);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+.route-meta-table {
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.route-meta-row {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+}
+.route-meta-key {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--steel);
+  width: 80px;
+  flex-shrink: 0;
+}
+.route-meta-val {
+  font-size: 13px;
+  color: var(--ink);
+  font-weight: 500;
+  line-height: 1.45;
+}
+.route-best {
+  margin-top: auto;
+  background: var(--peach);
+  border: 1px solid var(--peachln);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: var(--graphite);
+  line-height: 1.5;
+}
+.route-best strong {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--orange);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 3px;
+}
+
+/* ── CTA SECTION ────────────────────────── */
+.section-cta {
+  background: var(--ink);
+  padding: 80px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.section-cta::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 300px;
+  background: radial-gradient(ellipse, rgba(255,122,26,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+.cta-h2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(36px, 4vw, 52px);
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.cta-h2 em {
+  font-style: italic;
+  color: var(--amber);
+}
+.cta-lead {
+  font-size: 18px;
+  color: rgba(250,250,250,0.65);
+  line-height: 1.6;
+  max-width: 520px;
+  margin: 0 auto 40px;
+}
+.cta-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════════ -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-brand">
+    Bydots<span class="dot"></span>
+  </a>
+  <div class="nav-links">
+    <a href="platform.html" class="active">Platform</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <a href="contact.html" class="nav-cta">Start a conversation</a>
+</nav>
+
+
+<!-- ════════════════════════════════════════════
+     SECTION 1 — HERO
+════════════════════════════════════════════ -->
+<section class="hero">
+
+  <!-- Ambient node graph -->
+  <svg class="node-graph" style="right:-80px;top:-60px;width:640px;height:640px;" viewBox="0 0 640 640" fill="none" aria-hidden="true">
+    <g stroke="#FFFFFF" stroke-width="1">
+      <line x1="100" y1="140" x2="290" y2="210"/>
+      <line x1="290" y1="210" x2="500" y2="120"/>
+      <line x1="290" y1="210" x2="220" y2="400"/>
+      <line x1="290" y1="210" x2="450" y2="350"/>
+      <line x1="500" y1="120" x2="580" y2="280"/>
+      <line x1="220" y1="400" x2="450" y2="350"/>
+      <line x1="220" y1="400" x2="140" y2="530"/>
+      <line x1="450" y1="350" x2="580" y2="280"/>
+      <line x1="450" y1="350" x2="500" y2="520"/>
+      <line x1="140" y1="530" x2="340" y2="560"/>
+      <line x1="340" y1="560" x2="500" y2="520"/>
+      <line x1="80"  y1="280" x2="220" y2="400"/>
+      <line x1="80"  y1="280" x2="100" y2="140"/>
+    </g>
+    <g fill="#FFFFFF">
+      <circle cx="100" cy="140" r="5"/>
+      <circle cx="500" cy="120" r="5"/>
+      <circle cx="580" cy="280" r="5"/>
+      <circle cx="220" cy="400" r="5"/>
+      <circle cx="140" cy="530" r="5"/>
+      <circle cx="500" cy="520" r="5"/>
+      <circle cx="340" cy="560" r="5"/>
+      <circle cx="80"  cy="280" r="5"/>
+    </g>
+    <circle cx="290" cy="210" r="9" fill="#FF7A1A"/>
+    <circle cx="450" cy="350" r="7" fill="#F5B829"/>
+  </svg>
+
+  <div class="hero-inner">
+    <div class="section-eyebrow">VALORE Platform</div>
+    <h1 class="hero-h1">A governed system. Not a tool<em>.</em></h1>
+    <p class="hero-sub">VALORE captures what experts know, puts it to work for people and AI alike, and keeps every output accountable — and it gets better every time it runs.</p>
+    <div class="hero-cta">
+      <a href="platform-introduction.html" class="btn btn-ghost">Download platform introduction</a>
+    </div>
+    <div class="thesis-box">
+      <p><strong>Books teach. Simulators train.</strong> VALORE governs.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SECTION 2 — WHAT THE PLATFORM DOES
+════════════════════════════════════════════ -->
+<section class="section-capabilities">
+  <div class="container">
+    <div class="section-eyebrow">Platform capabilities</div>
+    <h2 class="section-h2">Five things the platform does<em>.</em></h2>
+
+    <div class="cap-grid">
+
+      <div class="cap-card">
+        <div class="cap-badge">A</div>
+        <div class="cap-title">Elicits</div>
+        <p class="cap-desc">Surfaces the tacit expertise that lives in people's heads and never reaches documentation.</p>
+      </div>
+
+      <div class="cap-card">
+        <div class="cap-badge">B</div>
+        <div class="cap-title">Empowers</div>
+        <p class="cap-desc">Puts that knowledge to work — for humans and agents, internally and externally.</p>
+      </div>
+
+      <div class="cap-card">
+        <div class="cap-badge">C</div>
+        <div class="cap-title">Governs</div>
+        <p class="cap-desc">Every output is checked, traceable and accountable to the encoded expertise.</p>
+      </div>
+
+      <div class="cap-card">
+        <div class="cap-badge">D</div>
+        <div class="cap-title">Scales</div>
+        <p class="cap-desc">One expert's judgement becomes reproducible leverage across an organisation.</p>
+      </div>
+
+      <div class="cap-card">
+        <div class="cap-badge">E</div>
+        <div class="cap-title">Operates anywhere</div>
+        <p class="cap-desc">Runs inside traditional business workflows and new AI agentic ones alike.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SECTION 3 — THE SYSTEM
+════════════════════════════════════════════ -->
+<section class="section-system">
+
+  <!-- Ambient node graph -->
+  <svg class="node-graph" style="left:-120px;bottom:-80px;width:500px;height:500px;" viewBox="0 0 500 500" fill="none" aria-hidden="true">
+    <g stroke="#0A0A0A" stroke-width="1">
+      <line x1="80"  y1="100" x2="240" y2="170"/>
+      <line x1="240" y1="170" x2="400" y2="90"/>
+      <line x1="240" y1="170" x2="180" y2="320"/>
+      <line x1="240" y1="170" x2="370" y2="280"/>
+      <line x1="400" y1="90"  x2="460" y2="210"/>
+      <line x1="180" y1="320" x2="370" y2="280"/>
+      <line x1="180" y1="320" x2="100" y2="430"/>
+      <line x1="370" y1="280" x2="460" y2="210"/>
+      <line x1="100" y1="430" x2="280" y2="450"/>
+    </g>
+    <g fill="#0A0A0A">
+      <circle cx="80"  cy="100" r="5"/>
+      <circle cx="400" cy="90"  r="5"/>
+      <circle cx="460" cy="210" r="5"/>
+      <circle cx="180" cy="320" r="5"/>
+      <circle cx="100" cy="430" r="5"/>
+      <circle cx="280" cy="450" r="5"/>
+    </g>
+    <circle cx="240" cy="170" r="8" fill="#FF7A1A"/>
+    <circle cx="370" cy="280" r="6" fill="#F5B829"/>
+  </svg>
+
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="system-header">
+      <div class="section-eyebrow">One coordinated system</div>
+      <h2 class="section-h2">Three layers, one accountability framework<em>.</em></h2>
+    </div>
+
+    <div class="system-grid">
+
+      <div class="sys-card">
+        <div class="sys-card-title">Suites</div>
+        <p class="sys-card-desc">Coordinated capability sets that handle a whole class of knowledge work end to end.</p>
+        <div class="sys-examples">
+          <div class="sys-example">Onboarding Suite</div>
+          <div class="sys-example">Handover Suite</div>
+          <div class="sys-example">Governance Suite</div>
+        </div>
+      </div>
+
+      <div class="sys-card">
+        <div class="sys-card-title">Apps</div>
+        <p class="sys-card-desc">Focused tools a person uses directly — for capture, review, handover and more.</p>
+        <div class="sys-examples">
+          <div class="sys-example">Capture App</div>
+          <div class="sys-example">Review App</div>
+          <div class="sys-example">Handover App</div>
+        </div>
+      </div>
+
+      <div class="sys-card">
+        <div class="sys-card-title">Agents</div>
+        <p class="sys-card-desc">Governed automations that carry out knowledge tasks under the same accountability.</p>
+        <div class="sys-examples">
+          <div class="sys-example">Quality Agent</div>
+          <div class="sys-example">Audit Agent</div>
+          <div class="sys-example">Consistency Agent</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="input-modes-bar">
+      <span class="input-modes-lead">Knowledge comes in many forms — input is multimodal:</span>
+      <div class="input-mode-pills">
+        <span class="mode-pill">conversation</span>
+        <span class="mode-pill">documents</span>
+        <span class="mode-pill">procedures</span>
+        <span class="mode-pill">voice</span>
+        <span class="mode-pill">records</span>
+        <span class="mode-pill">live work</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SECTION 4 — HOW KNOWLEDGE FLOWS
+════════════════════════════════════════════ -->
+<section class="section-flows">
+
+  <!-- Ambient node graph -->
+  <svg class="node-graph" style="right:-100px;top:50%;transform:translateY(-50%);width:560px;height:560px;" viewBox="0 0 560 560" fill="none" aria-hidden="true">
+    <g stroke="#FFFFFF" stroke-width="1">
+      <line x1="90"  y1="120" x2="260" y2="190"/>
+      <line x1="260" y1="190" x2="440" y2="100"/>
+      <line x1="260" y1="190" x2="200" y2="360"/>
+      <line x1="260" y1="190" x2="410" y2="310"/>
+      <line x1="440" y1="100" x2="510" y2="240"/>
+      <line x1="200" y1="360" x2="410" y2="310"/>
+      <line x1="200" y1="360" x2="120" y2="470"/>
+      <line x1="410" y1="310" x2="510" y2="240"/>
+      <line x1="410" y1="310" x2="460" y2="460"/>
+      <line x1="120" y1="470" x2="310" y2="495"/>
+      <line x1="310" y1="495" x2="460" y2="460"/>
+    </g>
+    <g fill="#FFFFFF">
+      <circle cx="90"  cy="120" r="5"/>
+      <circle cx="440" cy="100" r="5"/>
+      <circle cx="510" cy="240" r="5"/>
+      <circle cx="200" cy="360" r="5"/>
+      <circle cx="120" cy="470" r="5"/>
+      <circle cx="460" cy="460" r="5"/>
+      <circle cx="310" cy="495" r="5"/>
+    </g>
+    <circle cx="260" cy="190" r="8" fill="#FF7A1A"/>
+    <circle cx="410" cy="310" r="6" fill="#F5B829"/>
+  </svg>
+
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="flows-header">
+      <div class="section-eyebrow">Knowledge flows</div>
+      <h2 class="section-h2 on-dark">Two flow shapes. One platform<em>.</em></h2>
+    </div>
+
+    <div class="flows-grid">
+
+      <!-- Linear transfer -->
+      <div class="flow-card linear">
+        <div class="flow-card-eyebrow">Linear transfer</div>
+        <div class="flow-card-title">Expertise moved to where it is needed.</div>
+        <p class="flow-card-desc">Expertise moves from a source — through VALORE — to where it is needed.</p>
+
+        <div class="flow-chain">
+          <div class="flow-node src-node">
+            <span class="flow-node-label">Source</span>
+            <span class="flow-node-text">Expert knowledge</span>
+          </div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-node valore-node">
+            <span class="flow-node-label">VALORE</span>
+            <span class="flow-node-text">Encode &amp; govern</span>
+          </div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-node result-node">
+            <span class="flow-node-label">Result</span>
+            <span class="flow-node-text">Governed output</span>
+          </div>
+        </div>
+
+        <div class="flow-examples">
+          <div class="flow-example">Staff onboarding</div>
+          <div class="flow-example">Business handover</div>
+          <div class="flow-example">Messaging consistency</div>
+        </div>
+      </div>
+
+      <!-- Governed loop -->
+      <div class="flow-card loop">
+        <div class="flow-card-eyebrow">Governed loop</div>
+        <div class="flow-card-title">Work checked, then fed back to improve.</div>
+        <p class="flow-card-desc">Work runs, is measured against encoded expertise, and results return to strengthen the standard.</p>
+
+        <div class="flow-chain">
+          <div class="flow-node src-node">
+            <span class="flow-node-label">Input</span>
+            <span class="flow-node-text">Work produced</span>
+          </div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-node valore-node">
+            <span class="flow-node-label">VALORE</span>
+            <span class="flow-node-text">Check &amp; measure</span>
+          </div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-node result-node">
+            <span class="flow-node-label">Output</span>
+            <span class="flow-node-text">Cleared or returned</span>
+          </div>
+        </div>
+
+        <div class="flow-feedback">
+          <p class="flow-feedback-text"><strong>↺ Feedback</strong> — each pass sharpens the standard</p>
+        </div>
+
+        <div class="flow-examples">
+          <div class="flow-example">Governance</div>
+          <div class="flow-example">Content quality</div>
+          <div class="flow-example">Decision audit trails</div>
+        </div>
+      </div>
+
+    </div>
+
+    <a href="platform-introduction.html" class="flows-link">
+      Download the full flow diagrams <span class="arrow">→</span>
+    </a>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SECTION 5 — ACCESS ROUTES
+════════════════════════════════════════════ -->
+<section class="section-routes">
+  <div class="container">
+    <div class="routes-header">
+      <div class="section-eyebrow">Ways to engage</div>
+      <h2 class="section-h2">Four routes to put VALORE to work<em>.</em></h2>
+    </div>
+
+    <div class="depth-bar">
+      <span class="depth-label">Use it as built</span>
+      <span class="depth-track"></span>
+      <span class="depth-label">Build it together</span>
+    </div>
+
+    <div class="routes-grid">
+
+      <div class="route-card">
+        <div class="route-card-head">
+          <span class="route-num">01</span>
+          <span class="route-name">Use</span>
+        </div>
+        <div class="route-tagline">Adopt a pre-built workflow.</div>
+        <p class="route-desc">Start with VALORE's ready-made governed workflows. Add your own knowledge, and the platform puts it to work straight away.</p>
+        <div class="route-meta-table">
+          <div class="route-meta-row">
+            <span class="route-meta-key">You bring</span>
+            <span class="route-meta-val">Your knowledge</span>
+          </div>
+          <div class="route-meta-row">
+            <span class="route-meta-key">You get</span>
+            <span class="route-meta-val">A governed workflow working now</span>
+          </div>
+        </div>
+        <div class="route-best">
+          <strong>Best for</strong>
+          Operators ready to act today.
+        </div>
+      </div>
+
+      <div class="route-card">
+        <div class="route-card-head">
+          <span class="route-num">02</span>
+          <span class="route-name">Build</span>
+        </div>
+        <div class="route-tagline">Co-develop a custom version.</div>
+        <p class="route-desc">Partner with Bydots to build a version of VALORE that reflects how your field actually works — not a generic template.</p>
+        <div class="route-meta-table">
+          <div class="route-meta-row">
+            <span class="route-meta-key">You bring</span>
+            <span class="route-meta-val">Deep domain expertise</span>
+          </div>
+          <div class="route-meta-row">
+            <span class="route-meta-key">You get</span>
+            <span class="route-meta-val">A VALORE version built for your field</span>
+          </div>
+        </div>
+        <div class="route-best">
+          <strong>Best for</strong>
+          Experts with a niche worth encoding.
+        </div>
+      </div>
+
+      <div class="route-card">
+        <div class="route-card-head">
+          <span class="route-num">03</span>
+          <span class="route-name">Market</span>
+        </div>
+        <div class="route-tagline">Take a vertical version to market.</div>
+        <p class="route-desc">Bring reach and an audience that trusts you. We provide the platform and the build — the vertical's success becomes a shared outcome.</p>
+        <div class="route-meta-table">
+          <div class="route-meta-row">
+            <span class="route-meta-key">You bring</span>
+            <span class="route-meta-val">Audience and reach</span>
+          </div>
+          <div class="route-meta-row">
+            <span class="route-meta-key">You get</span>
+            <span class="route-meta-val">A platform to take to your market</span>
+          </div>
+        </div>
+        <div class="route-best">
+          <strong>Best for</strong>
+          Partners who can open a market.
+        </div>
+      </div>
+
+      <div class="route-card">
+        <div class="route-card-head">
+          <span class="route-num">04</span>
+          <span class="route-name">Originate</span>
+        </div>
+        <div class="route-tagline">Bring an idea; we develop it fast.</div>
+        <p class="route-desc">Bring a concept or an unsolved problem. An entirely new use case can be developed rapidly on top of the platform — without starting from zero.</p>
+        <div class="route-meta-table">
+          <div class="route-meta-row">
+            <span class="route-meta-key">You bring</span>
+            <span class="route-meta-val">A concept or unsolved problem</span>
+          </div>
+          <div class="route-meta-row">
+            <span class="route-meta-key">You get</span>
+            <span class="route-meta-val">A new use case, rapidly developed</span>
+          </div>
+        </div>
+        <div class="route-best">
+          <strong>Best for</strong>
+          Innovators with a use case no one has built yet.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SECTION 6 — CTA
+════════════════════════════════════════════ -->
+<section class="section-cta">
+  <div class="cta-inner">
+    <h2 class="cta-h2">Start with one use case<em>.</em></h2>
+    <p class="cta-lead">Tell us what you're working on. We will tell you straight whether VALORE is the right fit.</p>
+    <div class="cta-actions">
+      <a href="platform-introduction.html" class="btn btn-ghost">Download platform introduction</a>
+      <a href="contact.html" class="btn btn-primary">Start a conversation →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="footer-grid">
+
+    <div>
+      <div class="footer-brand">
+        Bydots<span class="dot"></span>
+      </div>
+      <p class="footer-desc">A governed AI workflow platform that captures what experts know, puts it to work, and keeps every output accountable.</p>
+    </div>
+
+    <div>
+      <div class="footer-col-head">Platform</div>
+      <div class="footer-col-links">
+        <a href="platform.html" style="color:var(--paper);">VALORE Platform</a>
+        <a href="platform-introduction.html">Platform Introduction</a>
+      </div>
+    </div>
+
+    <div>
+      <div class="footer-col-head">Company</div>
+      <div class="footer-col-links">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="#">Privacy</a>
+      </div>
+    </div>
+
+    <div>
+      <div class="footer-col-head">Contact</div>
+      <div class="footer-col-links">
+        <a href="#">BYDOTS.com</a>
+        <a href="mailto:solutions@bydots.com">solutions@bydots.com</a>
+        <a href="tel:+61414657908">+61 414 657 908</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Bydots Pty Ltd</span>
+    <span class="footer-prov">Built on VALORE Platform v1.0</span>
+  </div>
+</footer>
+
+</body>
+</html>

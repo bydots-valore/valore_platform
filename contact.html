@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bydots — Contact</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ── HERO ─────────────────────────────────── */
+  .hero {
+    background: var(--paper);
+    padding: 80px 0 0;
+  }
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 20px;
+    height: 2px;
+    background: var(--orange);
+    flex-shrink: 0;
+  }
+  .hero-h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 56px;
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    max-width: 780px;
+    margin-bottom: 24px;
+  }
+  .hero-h1 em { font-style: italic; color: var(--orange); }
+  .hero-lead {
+    font-size: 18px;
+    color: var(--graphite);
+    line-height: 1.65;
+    max-width: 600px;
+    padding-bottom: 56px;
+  }
+
+  /* ── CONTACT GRID ─────────────────────────── */
+  .contact-section {
+    background: var(--paper);
+    padding: 60px 0;
+    border-top: 1px solid var(--line);
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  /* Left column */
+  .contact-details-heading {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin-bottom: 28px;
+  }
+  .contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .contact-item {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .contact-item-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--orange);
+    border-radius: 50%;
+    flex-shrink: 0;
+    position: relative;
+    top: -1px;
+  }
+  .contact-item-body {}
+  .contact-item-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--steel);
+    margin-bottom: 3px;
+  }
+  .contact-item-value {
+    font-size: 15px;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .contact-divider {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 28px 0;
+  }
+  .contact-quote {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--graphite);
+    line-height: 1.65;
+  }
+
+  /* Right column — form */
+  .form-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .form-eyebrow::before {
+    content: '';
+    width: 16px;
+    height: 2px;
+    background: var(--orange);
+    flex-shrink: 0;
+  }
+  .form-field {
+    margin-bottom: 20px;
+  }
+  .form-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--steel);
+    display: block;
+    margin-bottom: 6px;
+  }
+  input,
+  select,
+  textarea {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+    background: var(--white);
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border-color: var(--orange);
+    box-shadow: 0 0 0 4px rgba(255,122,26,0.08);
+  }
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6B70' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 40px;
+    cursor: pointer;
+  }
+  textarea { resize: vertical; }
+  .form-submit {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 24px;
+    border-radius: 6px;
+    background: var(--orange);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    transition: background 0.15s;
+    display: block;
+    text-align: center;
+  }
+  .form-submit:hover { background: #E66A0F; }
+  .form-note {
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--steel);
+    line-height: 1.55;
+  }
+
+  /* ── OFFICE HOURS ─────────────────────────── */
+  .office-hours {
+    background: var(--white);
+    padding: 60px 0;
+    border-top: 1px solid var(--line);
+  }
+  .office-hours-inner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .oh-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--amber);
+    border-radius: 50%;
+    flex-shrink: 0;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.4; }
+  }
+  .oh-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--steel);
+    letter-spacing: 0.02em;
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────── -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-brand">Bydots<span class="dot"></span></a>
+  <div class="nav-links">
+    <a href="platform.html">Platform</a>
+    <a href="about.html">About</a>
+    <a href="contact.html" class="active">Contact</a>
+  </div>
+  <a href="contact.html" class="nav-cta">Start a conversation</a>
+</nav>
+
+
+<!-- ── HERO ─────────────────────────────────── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">Contact</div>
+    <h1 class="hero-h1">Talk to us about what your knowledge could be worth<em>.</em></h1>
+    <p class="hero-lead">Bring a use case, a niche, or just a question. We will tell you straight whether VALORE is the right fit — and what the first useful step looks like.</p>
+  </div>
+</section>
+
+
+<!-- ── CONTACT DETAILS + FORM ──────────────── -->
+<section class="contact-section">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- Left: contact details -->
+      <div>
+        <h3 class="contact-details-heading">Get in touch</h3>
+        <div class="contact-items">
+          <div class="contact-item">
+            <span class="contact-item-dot"></span>
+            <div class="contact-item-body">
+              <div class="contact-item-label">Web</div>
+              <div class="contact-item-value">BYDOTS.com</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-dot"></span>
+            <div class="contact-item-body">
+              <div class="contact-item-label">Email</div>
+              <div class="contact-item-value">solutions@bydots.com</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-dot"></span>
+            <div class="contact-item-body">
+              <div class="contact-item-label">Direct</div>
+              <div class="contact-item-value">+61 414 657 908</div>
+            </div>
+          </div>
+        </div>
+        <hr class="contact-divider">
+        <p class="contact-quote">"We respond to every genuine inquiry. If you have a use case in mind, tell us about it — the more specific the better."</p>
+      </div>
+
+      <!-- Right: form -->
+      <div>
+        <div class="form-eyebrow">Send an inquiry</div>
+        <form action="#" method="post" novalidate>
+          <div class="form-field">
+            <label class="form-label" for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name">
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="organisation">Organisation</label>
+            <input type="text" id="organisation" name="organisation" placeholder="Organisation name" autocomplete="organization">
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@organisation.com" autocomplete="email">
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="message">How can we help?</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell us about the problem you're trying to solve."></textarea>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="interest">Area of interest</label>
+            <select id="interest" name="interest">
+              <option value="" disabled selected>Select a use case</option>
+              <option value="onboarding">Staff onboarding</option>
+              <option value="handover">Business handover</option>
+              <option value="governance">Governance</option>
+              <option value="messaging">Messaging consistency</option>
+              <option value="content">Content quality assessment</option>
+              <option value="audit">Decision audit trails</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <button type="submit" class="form-submit">Send inquiry</button>
+          <p class="form-note">This form is for genuine inquiries. We do not respond to cold sales outreach.</p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ── OFFICE HOURS ───────────────────────────── -->
+<section class="office-hours">
+  <div class="container">
+    <div class="office-hours-inner">
+      <span class="oh-dot"></span>
+      <span class="oh-text">We work from Sydney, Australia — AEST (UTC+10). Typical response within one business day.</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── FOOTER ─────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Bydots<span class="dot"></span></div>
+      <p class="footer-desc">A governed system for moving expert knowledge into work that scales.</p>
+    </div>
+    <div>
+      <div class="footer-col-head">Platform</div>
+      <div class="footer-col-links">
+        <a href="platform.html">VALORE Platform</a>
+        <a href="platform-introduction.html">Platform Introduction</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-head">Company</div>
+      <div class="footer-col-links">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-head">Contact</div>
+      <div class="footer-col-links">
+        <a href="https://bydots.com">BYDOTS.com</a>
+        <a href="mailto:solutions@bydots.com">solutions@bydots.com</a>
+        <a href="tel:+61414657908">+61 414 657 908</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Bydots Pty Ltd · All rights reserved.</span>
+    <span class="footer-prov">Built on VALORE Platform v1.0</span>
+  </div>
+</footer>
+
+</body>
+</html>

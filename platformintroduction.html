@@ -1,0 +1,1868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bydots — VALORE Platform Introduction</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  .doc-nav {
+    position: sticky; top: 0; z-index: 100;
+    height: 52px;
+    background: #fff;
+    border-bottom: 1px solid #DBDBDE;
+    display: flex; align-items: center;
+    padding: 0 32px;
+    gap: 0;
+  }
+  .doc-nav-brand {
+    font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600;
+    color: #0A0A0A; display: flex; align-items: center; gap: 2px;
+    text-decoration: none; margin-right: 32px;
+  }
+  .doc-nav-brand .dot { width: 8px; height: 8px; background: #FF7A1A; border-radius: 50%; display: inline-block; }
+  .doc-nav-links { display: flex; gap: 4px; flex: 1; }
+  .doc-nav-links a {
+    font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #6B6B70;
+    padding: 6px 12px; border-radius: 5px; text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+  }
+  .doc-nav-links a:hover { background: #FAFAFA; color: #0A0A0A; }
+  .doc-nav-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #6B6B70; padding-right: 16px; border-right: 1px solid #DBDBDE;
+    margin-right: 16px;
+  }
+  .doc-nav-print {
+    font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
+    color: #0A0A0A; background: #FAFAFA; border: 1px solid #DBDBDE;
+    padding: 6px 16px; border-radius: 5px; cursor: pointer; text-decoration: none;
+  }
+  .doc-nav-print:hover { background: #E8E8EA; }
+</style>
+<style>
+  :root {
+    --ink:     #0A0A0A;
+    --graphite:#2A2A2E;
+    --steel:   #6B6B70;
+    --mist:    #E8E8EA;
+    --paper:   #FAFAFA;
+    --orange:  #FF7A1A;
+    --amber:   #F5B829;
+    --line:    #DBDBDE;
+    --card:    #FFFFFF;
+    --peach:   #FFF1E2;
+    --peachln: #FFD9B5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: #5a5a5e;
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ────────────────────────────────────────────
+     A4 PORTRAIT SHEET SYSTEM
+     Each .sheet is exactly 210×297 mm. Inner
+     content is authored at 1080 px wide and
+     scaled down via transform to fit A4.
+  ──────────────────────────────────────────── */
+  @page { size: A4 portrait; margin: 0; }
+
+  .sheet {
+    width: 210mm;
+    height: 297mm;
+    position: relative;
+    overflow: hidden;
+    background: var(--paper);
+    page-break-after: always;
+    margin: 18px auto;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+  }
+  .sheet:last-child { page-break-after: auto; }
+
+  .sheet-inner {
+    width: 1080px;
+    height: 1527px;
+    transform-origin: top left;
+    transform: scale(0.7351);
+    position: relative;
+    padding: 0 48px;
+  }
+
+  @media print {
+    html, body { background: var(--paper); }
+    .sheet { margin: 0; box-shadow: none; }
+  }
+
+  /* ────────────────────────────────────────────
+     SHARED: HEADER / FOOTER / TYPE UTILITIES
+  ──────────────────────────────────────────── */
+  .header {
+    padding: 56px 0 30px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .wordmark {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 26px;
+  }
+  .wordmark .dot {
+    width: 9px;
+    height: 9px;
+    background: var(--orange);
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  .wordmark .sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 400;
+    color: var(--steel);
+    letter-spacing: 0.04em;
+    padding-left: 11px;
+    border-left: 1px solid var(--line);
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 16px;
+  }
+
+  .headline {
+    font-family: 'Fraunces', serif;
+    font-size: 44px;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    max-width: 820px;
+  }
+  .headline em { font-style: italic; color: var(--orange); }
+
+  .subhead {
+    margin-top: 16px;
+    font-size: 16px;
+    color: var(--graphite);
+    font-weight: 400;
+    line-height: 1.6;
+    max-width: 700px;
+  }
+
+  .footer {
+    position: absolute;
+    left: 48px;
+    right: 48px;
+    bottom: 36px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--steel);
+  }
+  .footer-conf {
+    font-size: 11px;
+    color: var(--steel);
+    letter-spacing: 0.04em;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--steel);
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-label::before {
+    content: '';
+    width: 22px;
+    height: 2px;
+    background: var(--orange);
+    flex-shrink: 0;
+  }
+
+  .section { margin-top: 36px; }
+
+  .thesis {
+    margin: 28px 0 6px;
+    padding: 20px 26px;
+    background: var(--ink);
+    border-radius: 8px;
+  }
+  .thesis-text {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--paper);
+    line-height: 1.55;
+  }
+  .thesis-text b { color: var(--amber); font-style: normal; font-weight: 600; }
+
+  /* ────────────────────────────────────────────
+     PAGE 1 — COVER
+  ──────────────────────────────────────────── */
+  .cover-inner { padding: 0; }
+
+  .cover-frame {
+    position: absolute;
+    inset: 56px 64px 56px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .cover-top { display: flex; flex-direction: column; gap: 0; }
+
+  .cover-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .cover-eyebrow::before {
+    content: '';
+    width: 28px;
+    height: 2px;
+    background: var(--orange);
+    flex-shrink: 0;
+  }
+
+  .cover-mid { padding-right: 60px; }
+
+  .cover-h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 92px;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    font-variation-settings: "opsz" 144, "SOFT" 40;
+  }
+  .cover-h1 em { font-style: italic; color: var(--ink); }
+  .cover-h1 .period {
+    color: var(--orange);
+    display: inline-block;
+    transform: translateY(-0.04em);
+  }
+
+  .cover-sub {
+    margin-top: 30px;
+    font-family: 'Fraunces', serif;
+    font-size: 21px;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--graphite);
+    line-height: 1.5;
+    max-width: 720px;
+  }
+
+  .cover-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: end;
+    border-top: 2px solid var(--ink);
+    padding-top: 26px;
+  }
+
+  .cover-id-block { display: flex; flex-direction: column; gap: 8px; }
+  .cover-id-key {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--steel);
+  }
+  .cover-id-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+
+  .cover-stamp {
+    border-left: 1px solid var(--line);
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .cover-stamp-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--orange);
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .cover-stamp-label::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background: var(--orange);
+    border-radius: 50%;
+  }
+  .cover-stamp-body {
+    font-size: 11.5px;
+    color: var(--graphite);
+    line-height: 1.55;
+    font-weight: 400;
+  }
+  .cover-stamp-foot {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--steel);
+    letter-spacing: 0.04em;
+    margin-top: 4px;
+  }
+
+  /* Decorative node graph — cover */
+  .cover-graph {
+    position: absolute;
+    right: -120px;
+    top: 280px;
+    width: 600px;
+    height: 600px;
+    opacity: 0.10;
+    pointer-events: none;
+  }
+
+  /* ────────────────────────────────────────────
+     PAGE 2 — PLATFORM INTRO
+  ──────────────────────────────────────────── */
+  .caps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+  }
+  .cap {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 18px 16px 20px;
+  }
+  .cap-key {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--card);
+    background: var(--ink);
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+  }
+  .cap-title {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .cap-desc {
+    font-size: 12.5px;
+    color: var(--steel);
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  .system {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .sys {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 20px 24px;
+    border-top: 3px solid var(--orange);
+  }
+  .sys-title {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 7px;
+  }
+  .sys-desc {
+    font-size: 13px;
+    color: var(--graphite);
+    line-height: 1.55;
+    font-weight: 400;
+  }
+
+  .modal {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    background: var(--mist);
+    border-radius: 8px;
+    padding: 16px 24px;
+    flex-wrap: wrap;
+  }
+  .modal-lead {
+    font-family: 'Fraunces', serif;
+    font-size: 14.5px;
+    font-style: italic;
+    color: var(--ink);
+    flex-shrink: 0;
+  }
+  .modal-tags { display: flex; gap: 9px; flex-wrap: wrap; }
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 5px 12px;
+    letter-spacing: 0.02em;
+  }
+
+  .uses {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 44px;
+  }
+  .use {
+    display: flex;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: flex-start;
+  }
+  .use-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--orange);
+    font-weight: 500;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .use-title {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+  .use-desc {
+    font-size: 12.5px;
+    color: var(--steel);
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  .closer {
+    margin-top: 36px;
+    padding: 28px 32px;
+    background: var(--ink);
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .closer::after {
+    content: '';
+    position: absolute;
+    right: -40px;
+    top: -40px;
+    width: 160px;
+    height: 160px;
+    background: radial-gradient(circle, rgba(255,122,26,0.35) 0%, transparent 70%);
+  }
+  .closer-text {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    color: var(--paper);
+    line-height: 1.5;
+    position: relative;
+    z-index: 1;
+  }
+  .closer-text em { font-style: italic; color: var(--amber); }
+
+  /* ────────────────────────────────────────────
+     PAGES 3 & 4 — FLOW DIAGRAMS
+  ──────────────────────────────────────────── */
+  .diag-header {
+    padding: 56px 0 26px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .diag-title {
+    font-family: 'Fraunces', serif;
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+  }
+  .diag-title em { font-style: italic; color: var(--orange); }
+  .diag-sub {
+    margin-top: 14px;
+    font-size: 15px;
+    color: var(--graphite);
+    font-weight: 400;
+    line-height: 1.6;
+    max-width: 680px;
+  }
+
+  .band-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--steel);
+    margin: 36px 0 7px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .band-label::before {
+    content: '';
+    width: 22px;
+    height: 2px;
+    background: var(--orange);
+    flex-shrink: 0;
+  }
+  .band-note {
+    font-family: 'Fraunces', serif;
+    font-size: 14.5px;
+    color: var(--graphite);
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 24px;
+  }
+
+  .band { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 26px; }
+
+  .flow {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 22px 22px 24px;
+  }
+  .flow-name {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--mist);
+  }
+
+  .chain { display: flex; flex-direction: column; align-items: stretch; }
+
+  .node {
+    border-radius: 6px;
+    padding: 12px;
+    text-align: center;
+  }
+  .node.src  { background: var(--mist); }
+  .node.core { background: var(--ink); }
+  .node.dest { background: var(--peach); border: 1px solid var(--peachln); }
+
+  .node-role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--steel);
+    display: block;
+    margin-bottom: 5px;
+  }
+  .node.core .node-role { color: var(--amber); }
+  .node.dest .node-role { color: var(--orange); }
+
+  .node-text {
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.4;
+    font-weight: 500;
+  }
+  .node.core .node-text { color: var(--paper); }
+
+  .arrow {
+    align-self: center;
+    color: var(--orange);
+    font-size: 16px;
+    line-height: 1;
+    padding: 8px 0;
+    font-weight: 700;
+  }
+
+  .loop-back {
+    margin-top: 10px;
+    border: 1.5px dashed var(--orange);
+    border-radius: 6px;
+    padding: 10px 12px;
+    text-align: center;
+    background: var(--peach);
+  }
+  .loop-back-text {
+    font-size: 11.5px;
+    color: var(--graphite);
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  .loop-back-text b { color: var(--orange); font-weight: 600; }
+
+  .legend {
+    margin-top: 30px;
+    padding: 16px 24px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    display: flex;
+    gap: 26px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 12px;
+    color: var(--graphite);
+    font-weight: 400;
+  }
+  .swatch {
+    width: 26px;
+    height: 16px;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+  .swatch.s-src  { background: var(--mist); }
+  .swatch.s-core { background: var(--ink); }
+  .swatch.s-dest { background: var(--peach); border: 1px solid var(--peachln); }
+  .swatch.s-loop { background: var(--peach); border: 1.5px dashed var(--orange); }
+
+  /* ────────────────────────────────────────────
+     PAGE 5 — ACCESS ROUTES
+  ──────────────────────────────────────────── */
+  .depth {
+    margin: 28px 0 4px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  .depth-cap {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--steel);
+    flex-shrink: 0;
+  }
+  .depth-track {
+    flex: 1;
+    height: 4px;
+    margin: 0 14px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--amber) 0%, var(--orange) 100%);
+  }
+
+  .routes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .route {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    border-top: 3px solid var(--orange);
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+  }
+  .route-top {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+  .route-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--card);
+    background: var(--ink);
+    padding: 4px 8px;
+    border-radius: 5px;
+    flex-shrink: 0;
+  }
+  .route-name {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .route-tagline {
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--orange);
+    margin-bottom: 12px;
+  }
+  .route-desc {
+    font-size: 13px;
+    color: var(--graphite);
+    line-height: 1.55;
+    font-weight: 400;
+    margin-bottom: 14px;
+  }
+  .route-meta {
+    margin-top: auto;
+    padding-top: 13px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .meta-row {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+  }
+  .meta-key {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--steel);
+    width: 74px;
+    flex-shrink: 0;
+  }
+  .meta-val {
+    font-size: 12.5px;
+    color: var(--ink);
+    line-height: 1.5;
+    font-weight: 500;
+  }
+  .route-best {
+    margin-top: 12px;
+    background: var(--peach);
+    border: 1px solid var(--peachln);
+    border-radius: 6px;
+    padding: 9px 12px;
+    font-size: 12px;
+    color: var(--graphite);
+    line-height: 1.5;
+  }
+  .route-best b {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .core-note {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: var(--mist);
+    border-radius: 8px;
+    padding: 16px 24px;
+    flex-wrap: wrap;
+  }
+  .core-lead {
+    font-family: 'Fraunces', serif;
+    font-size: 14.5px;
+    font-style: italic;
+    color: var(--ink);
+    flex-shrink: 0;
+  }
+  .core-tags { display: flex; gap: 9px; flex-wrap: wrap; }
+
+  /* ────────────────────────────────────────────
+     PAGES 6–8 — THOUGHT STARTERS
+  ──────────────────────────────────────────── */
+  .ts-note {
+    margin-top: 24px;
+    padding: 14px 22px;
+    background: var(--mist);
+    border-radius: 8px;
+    font-family: 'Fraunces', serif;
+    font-size: 14.5px;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.55;
+  }
+
+  .starter {
+    margin-top: 22px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px 28px 26px;
+  }
+  .starter-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 4px;
+  }
+  .starter-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--card);
+    background: var(--ink);
+    padding: 4px 9px;
+    border-radius: 5px;
+    flex-shrink: 0;
+  }
+  .starter-name {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .starter-q {
+    margin: 10px 0 18px;
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--orange);
+    line-height: 1.45;
+  }
+
+  .arc {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0;
+    align-items: stretch;
+    margin-bottom: 16px;
+  }
+  .arc-cell { padding: 14px 18px; border-radius: 8px; }
+  .arc-cell.now   { background: var(--mist); }
+  .arc-cell.later { background: var(--peach); border: 1px solid var(--peachln); }
+
+  .arc-when {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--steel);
+    margin-bottom: 7px;
+  }
+  .arc-cell.later .arc-when { color: var(--orange); }
+
+  .arc-text { font-size: 13px; color: var(--graphite); line-height: 1.5; font-weight: 400; }
+  .arc-text b { color: var(--ink); font-weight: 600; }
+
+  .arc-join {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 14px;
+    color: var(--orange);
+    font-size: 17px;
+    font-weight: 700;
+  }
+
+  .prov-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--steel);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .prov-label::before {
+    content: '';
+    width: 18px;
+    height: 2px;
+    background: var(--orange);
+    flex-shrink: 0;
+  }
+
+  .prov {
+    display: flex;
+    gap: 12px;
+    padding: 6px 0;
+    align-items: flex-start;
+  }
+  .prov-mark { color: var(--orange); font-size: 13px; font-weight: 700; flex-shrink: 0; line-height: 1.5; }
+  .prov-text { font-size: 13px; color: var(--graphite); line-height: 1.5; font-weight: 400; }
+  .prov-text b { color: var(--ink); font-weight: 600; }
+
+  .closer-ts {
+    margin-top: 28px;
+    padding: 26px 30px;
+    background: var(--ink);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .closer-ts::after {
+    content: '';
+    position: absolute;
+    right: -50px;
+    bottom: -50px;
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, rgba(255,122,26,0.32) 0%, transparent 70%);
+  }
+  .closer-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
+  .closer-ts-text {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    color: var(--paper);
+    line-height: 1.5;
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+  }
+  .closer-ts-text em { font-style: italic; color: var(--amber); }
+
+  /* ────────────────────────────────────────────
+     PAGE 9 — BACK COVER
+  ──────────────────────────────────────────── */
+  .back-frame {
+    position: absolute;
+    inset: 56px 64px 56px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .back-mid { padding-right: 60px; }
+
+  .back-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .back-eyebrow::before {
+    content: '';
+    width: 28px;
+    height: 2px;
+    background: var(--orange);
+    flex-shrink: 0;
+  }
+
+  .back-h {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 56px;
+    line-height: 1.06;
+    letter-spacing: -0.022em;
+    color: var(--ink);
+    max-width: 760px;
+  }
+  .back-h em { font-style: italic; color: var(--ink); }
+  .back-h .period { color: var(--orange); }
+
+  .back-sub {
+    margin-top: 22px;
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--graphite);
+    line-height: 1.5;
+    max-width: 640px;
+  }
+
+  .contact {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .contact-cell {
+    padding: 22px 28px 22px 0;
+    border-right: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .contact-cell:first-child { padding-left: 0; }
+  .contact-cell:last-child  { border-right: none; padding-right: 0; }
+  .contact-cell:not(:first-child) { padding-left: 28px; }
+
+  .contact-key {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--steel);
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .contact-key::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--orange);
+    border-radius: 50%;
+  }
+  .contact-val {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .back-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 2px solid var(--ink);
+    padding-top: 22px;
+  }
+  .back-conf {
+    font-size: 11px;
+    color: var(--steel);
+    letter-spacing: 0.04em;
+    line-height: 1.6;
+    max-width: 560px;
+  }
+  .back-end {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--orange);
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .back-end::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background: var(--orange);
+    border-radius: 50%;
+  }
+
+  /* Decorative node graph — back cover */
+  .back-graph {
+    position: absolute;
+    left: -160px;
+    bottom: 60px;
+    width: 600px;
+    height: 600px;
+    opacity: 0.08;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<nav class="doc-nav">
+  <a href="index.html" class="doc-nav-brand">Bydots<span class="dot"></span></a>
+  <div class="doc-nav-links">
+    <a href="platform.html">Platform</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <span class="doc-nav-label">Platform Introduction · PDF</span>
+  <a href="#" class="doc-nav-print" onclick="window.print();return false;">Print / Save PDF</a>
+</nav>
+
+<!-- ════════════════════════════════════════════
+     PAGE 1 — COVER
+════════════════════════════════════════════ -->
+<section class="sheet">
+  <div class="sheet-inner cover-inner">
+
+    <svg class="cover-graph" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g stroke="#0A0A0A" stroke-width="1">
+        <line x1="80"  y1="120" x2="240" y2="180"/>
+        <line x1="240" y1="180" x2="420" y2="100"/>
+        <line x1="240" y1="180" x2="180" y2="360"/>
+        <line x1="240" y1="180" x2="380" y2="320"/>
+        <line x1="420" y1="100" x2="520" y2="240"/>
+        <line x1="180" y1="360" x2="380" y2="320"/>
+        <line x1="180" y1="360" x2="100" y2="480"/>
+        <line x1="380" y1="320" x2="520" y2="240"/>
+        <line x1="380" y1="320" x2="460" y2="480"/>
+        <line x1="100" y1="480" x2="280" y2="500"/>
+        <line x1="280" y1="500" x2="460" y2="480"/>
+      </g>
+      <g fill="#0A0A0A">
+        <circle cx="80"  cy="120" r="6"/>
+        <circle cx="420" cy="100" r="6"/>
+        <circle cx="520" cy="240" r="6"/>
+        <circle cx="180" cy="360" r="6"/>
+        <circle cx="380" cy="320" r="6"/>
+        <circle cx="100" cy="480" r="6"/>
+        <circle cx="460" cy="480" r="6"/>
+        <circle cx="280" cy="500" r="6"/>
+      </g>
+      <circle cx="240" cy="180" r="9" fill="#FF7A1A"/>
+    </svg>
+
+    <div class="cover-frame">
+
+      <div class="cover-top">
+        <div class="wordmark">
+          Bydots<span class="dot"></span>
+          <span class="sub">VALORE Platform</span>
+        </div>
+        <div class="cover-eyebrow">Platform introduction</div>
+      </div>
+
+      <div class="cover-mid">
+        <h1 class="cover-h1">Expertise,<br>made <em>operational</em><span class="period">.</span></h1>
+        <p class="cover-sub">A governed system for moving what experts know into work that scales — for humans and AI agents alike, accountable every time it runs.</p>
+      </div>
+
+      <div class="cover-meta">
+        <div class="cover-id-block">
+          <span class="cover-id-key">Document</span>
+          <span class="cover-id-val">EXT-BD-DOC-PlatformIntro-v1.0</span>
+          <span class="cover-id-key" style="margin-top:10px">Issued</span>
+          <span class="cover-id-val">May 2026 · Bydots Pty Ltd</span>
+        </div>
+        <div class="cover-stamp">
+          <div class="cover-stamp-label">Confidential</div>
+          <div class="cover-stamp-body">This document and the information it contains are the confidential and proprietary property of Bydots Pty Ltd. Provided for review and discussion with the named recipient only. No part may be reproduced, distributed, or disclosed to a third party without the prior written consent of Bydots Pty Ltd.</div>
+          <div class="cover-stamp-foot">© 2026 Bydots Pty Ltd · All rights reserved.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     PAGE 2 — PLATFORM INTRODUCTION
+════════════════════════════════════════════ -->
+<section class="sheet">
+  <div class="sheet-inner">
+
+    <div class="header">
+      <div class="wordmark">
+        Bydots<span class="dot"></span>
+        <span class="sub">VALORE Platform</span>
+      </div>
+      <div class="eyebrow">Platform Introduction</div>
+      <h1 class="headline">A governed system for moving <em>expert knowledge</em> into work that scales.</h1>
+      <p class="subhead">VALORE is a coordinated system of Suites, apps and agents that captures what an expert knows, puts it to work for people and AI alike, and keeps every result accountable.</p>
+    </div>
+
+    <div class="thesis">
+      <p class="thesis-text"><b>Books teach. Simulators train.</b> VALORE governs — and gets better every time it runs.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-label">What the platform does</div>
+      <div class="caps">
+        <div class="cap">
+          <div class="cap-key">A</div>
+          <div class="cap-title">Elicits knowledge</div>
+          <div class="cap-desc">Surfaces the tacit expertise that lives in people's heads and never reaches documentation.</div>
+        </div>
+        <div class="cap">
+          <div class="cap-key">B</div>
+          <div class="cap-title">Empowers</div>
+          <div class="cap-desc">Puts that knowledge to work — for humans and agents, internally and externally.</div>
+        </div>
+        <div class="cap">
+          <div class="cap-key">C</div>
+          <div class="cap-title">Governs</div>
+          <div class="cap-desc">Every output is checked, traceable and accountable to the encoded expertise.</div>
+        </div>
+        <div class="cap">
+          <div class="cap-key">D</div>
+          <div class="cap-title">Scales</div>
+          <div class="cap-desc">One expert's judgement becomes reproducible leverage across an organisation.</div>
+        </div>
+        <div class="cap">
+          <div class="cap-key">E</div>
+          <div class="cap-title">Operates anywhere</div>
+          <div class="cap-desc">Runs inside traditional business workflows and new AI agentic ones alike.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">One coordinated system</div>
+      <div class="system">
+        <div class="sys">
+          <div class="sys-title">Suites</div>
+          <div class="sys-desc">Coordinated capability sets that handle a whole class of knowledge work end to end.</div>
+        </div>
+        <div class="sys">
+          <div class="sys-title">Apps</div>
+          <div class="sys-desc">Focused tools a person uses directly — for capture, review, handover and more.</div>
+        </div>
+        <div class="sys">
+          <div class="sys-title">Agents</div>
+          <div class="sys-desc">Governed automations that carry out knowledge tasks under the same accountability.</div>
+        </div>
+      </div>
+      <div class="modal">
+        <span class="modal-lead">Knowledge comes in many forms — so input is multimodal:</span>
+        <div class="modal-tags">
+          <span class="tag">conversation</span>
+          <span class="tag">documents</span>
+          <span class="tag">procedures</span>
+          <span class="tag">voice</span>
+          <span class="tag">records</span>
+          <span class="tag">live work</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Typical uses</div>
+      <div class="uses">
+        <div class="use">
+          <span class="use-num">01</span>
+          <div>
+            <div class="use-title">Staff onboarding</div>
+            <div class="use-desc">Including a new learn-while-working process — people build capability on real tasks.</div>
+          </div>
+        </div>
+        <div class="use">
+          <span class="use-num">02</span>
+          <div>
+            <div class="use-title">Business handover</div>
+            <div class="use-desc">An owner's or expert's accumulated judgement transferred intact, not lost on exit.</div>
+          </div>
+        </div>
+        <div class="use">
+          <span class="use-num">03</span>
+          <div>
+            <div class="use-title">Governance</div>
+            <div class="use-desc">Work stays aligned to the standards and judgement the organisation actually relies on.</div>
+          </div>
+        </div>
+        <div class="use">
+          <span class="use-num">04</span>
+          <div>
+            <div class="use-title">Messaging consistency</div>
+            <div class="use-desc">Every communication carries the same voice, position and standard of care.</div>
+          </div>
+        </div>
+        <div class="use">
+          <span class="use-num">05</span>
+          <div>
+            <div class="use-title">Content quality assessment</div>
+            <div class="use-desc">Output measured against encoded expertise before it goes anywhere.</div>
+          </div>
+        </div>
+        <div class="use">
+          <span class="use-num">06</span>
+          <div>
+            <div class="use-title">Decision audit trails</div>
+            <div class="use-desc">A traceable record of how and why a decision was reached — accountable after the fact.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="closer">
+      <p class="closer-text">VALORE turns what your best people know into <em>infrastructure</em> — reproducible, auditable, and improving every time it runs.</p>
+    </div>
+
+    <div class="footer">
+      <span class="footer-id">EXT-BD-DOC-PlatformIntro-OnePager-v1.0</span>
+      <span class="footer-conf">© 2026 Bydots Pty Ltd · Confidential</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     PAGE 3 — LINEAR TRANSFERS
+════════════════════════════════════════════ -->
+<section class="sheet">
+  <div class="sheet-inner">
+
+    <div class="diag-header">
+      <div class="wordmark">
+        Bydots<span class="dot"></span>
+        <span class="sub">VALORE Platform</span>
+      </div>
+      <h2 class="diag-title">How knowledge <em>flows</em> — linear transfers.</h2>
+      <p class="diag-sub">The same platform, two flow shapes. In these uses, expertise moves from a source — through VALORE — to where it is needed. The governed-loop uses follow on the next page.</p>
+    </div>
+
+    <div class="band-label">Linear transfer — expertise moved to where it is needed</div>
+    <div class="band-note">Knowledge travels from a source, through VALORE, to a destination.</div>
+
+    <div class="band">
+
+      <div class="flow">
+        <div class="flow-name">Staff onboarding</div>
+        <div class="chain">
+          <div class="node src"><span class="node-role">Source</span><span class="node-text">Experienced staff &amp; standards</span></div>
+          <div class="arrow">↓</div>
+          <div class="node core"><span class="node-role">VALORE</span><span class="node-text">Elicits &amp; encodes the role's know-how</span></div>
+          <div class="arrow">↓</div>
+          <div class="node src"><span class="node-role">Process</span><span class="node-text">New hire learns while working real tasks</span></div>
+          <div class="arrow">↓</div>
+          <div class="node dest"><span class="node-role">Result</span><span class="node-text">Capable, governed team member</span></div>
+        </div>
+      </div>
+
+      <div class="flow">
+        <div class="flow-name">Business handover</div>
+        <div class="chain">
+          <div class="node src"><span class="node-role">Source</span><span class="node-text">Owner / departing expert</span></div>
+          <div class="arrow">↓</div>
+          <div class="node core"><span class="node-role">VALORE</span><span class="node-text">Captures accumulated judgement &amp; decisions</span></div>
+          <div class="arrow">↓</div>
+          <div class="node src"><span class="node-role">Asset</span><span class="node-text">Encoded, reproducible knowledge base</span></div>
+          <div class="arrow">↓</div>
+          <div class="node dest"><span class="node-role">Result</span><span class="node-text">Successor operates with judgement intact</span></div>
+        </div>
+      </div>
+
+      <div class="flow">
+        <div class="flow-name">Messaging consistency</div>
+        <div class="chain">
+          <div class="node src"><span class="node-role">Source</span><span class="node-text">Brand voice, position &amp; standards</span></div>
+          <div class="arrow">↓</div>
+          <div class="node core"><span class="node-role">VALORE</span><span class="node-text">Encodes the standard once</span></div>
+          <div class="arrow">↓</div>
+          <div class="node src"><span class="node-role">Apply</span><span class="node-text">Every communication drafted against it</span></div>
+          <div class="arrow">↓</div>
+          <div class="node dest"><span class="node-role">Result</span><span class="node-text">One consistent voice at any scale</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <span class="footer-id">EXT-BD-DOC-PlatformIntro-OnePager-v1.0 · p.2</span>
+      <span class="footer-conf">© 2026 Bydots Pty Ltd · Confidential</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     PAGE 4 — GOVERNED LOOPS
+════════════════════════════════════════════ -->
+<section class="sheet">
+  <div class="sheet-inner">
+
+    <div class="diag-header">
+      <div class="wordmark">
+        Bydots<span class="dot"></span>
+        <span class="sub">VALORE Platform</span>
+      </div>
+      <h2 class="diag-title">How knowledge <em>flows</em> — governed loops.</h2>
+      <p class="diag-sub">In these uses the work runs, is measured against encoded expertise, and the result returns to strengthen the standard — so the platform gets better every time it runs.</p>
+    </div>
+
+    <div class="band-label">Governed loop — work checked, then fed back to improve</div>
+    <div class="band-note">Work runs, is measured against encoded expertise, and the result returns to strengthen the standard.</div>
+
+    <div class="band">
+
+      <div class="flow">
+        <div class="flow-name">Governance</div>
+        <div class="chain">
+          <div class="node src"><span class="node-role">Input</span><span class="node-text">Work produced by people or agents</span></div>
+          <div class="arrow">↓</div>
+          <div class="node core"><span class="node-role">VALORE</span><span class="node-text">Checks against encoded expertise &amp; rules</span></div>
+          <div class="arrow">↓</div>
+          <div class="node dest"><span class="node-role">Output</span><span class="node-text">Work cleared as aligned, or returned</span></div>
+          <div class="loop-back"><span class="loop-back-text"><b>↺ Feedback</b> — each pass sharpens the encoded standard</span></div>
+        </div>
+      </div>
+
+      <div class="flow">
+        <div class="flow-name">Content quality assessment</div>
+        <div class="chain">
+          <div class="node src"><span class="node-role">Input</span><span class="node-text">Draft content awaiting release</span></div>
+          <div class="arrow">↓</div>
+          <div class="node core"><span class="node-role">VALORE</span><span class="node-text">Scores it against the expert benchmark</span></div>
+          <div class="arrow">↓</div>
+          <div class="node dest"><span class="node-role">Output</span><span class="node-text">Pass to publish, or revise &amp; resubmit</span></div>
+          <div class="loop-back"><span class="loop-back-text"><b>↺ Feedback</b> — quality bar rises as the benchmark learns</span></div>
+        </div>
+      </div>
+
+      <div class="flow">
+        <div class="flow-name">Decision audit trails</div>
+        <div class="chain">
+          <div class="node src"><span class="node-role">Input</span><span class="node-text">A decision being made</span></div>
+          <div class="arrow">↓</div>
+          <div class="node core"><span class="node-role">VALORE</span><span class="node-text">Records how &amp; why, traced to its basis</span></div>
+          <div class="arrow">↓</div>
+          <div class="node dest"><span class="node-role">Output</span><span class="node-text">Accountable, reviewable decision record</span></div>
+          <div class="loop-back"><span class="loop-back-text"><b>↺ Feedback</b> — past decisions inform future judgement</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><span class="swatch s-src"></span>Source / input</div>
+      <div class="legend-item"><span class="swatch s-core"></span>VALORE — elicit, encode, govern</div>
+      <div class="legend-item"><span class="swatch s-dest"></span>Result / output</div>
+      <div class="legend-item"><span class="swatch s-loop"></span>Feedback — gets better every run</div>
+    </div>
+
+    <div class="footer">
+      <span class="footer-id">EXT-BD-DOC-PlatformIntro-OnePager-v1.0 · p.3</span>
+      <span class="footer-conf">© 2026 Bydots Pty Ltd · Confidential</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     PAGE 5 — ACCESS ROUTES
+════════════════════════════════════════════ -->
+<section class="sheet">
+  <div class="sheet-inner">
+
+    <div class="header">
+      <div class="wordmark">
+        Bydots<span class="dot"></span>
+        <span class="sub">VALORE Platform</span>
+      </div>
+      <div class="eyebrow">Ways to Engage</div>
+      <h1 class="headline">Four ways to put <em>VALORE</em> to work.</h1>
+      <p class="subhead">The same platform meets you wherever you are — from adopting a ready-made workflow today, to partnering with Bydots to build, take to market, or originate something entirely new.</p>
+    </div>
+
+    <div class="depth">
+      <span class="depth-cap">Use it as built</span>
+      <span class="depth-track"></span>
+      <span class="depth-cap">Build it together</span>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Choose your route</div>
+      <div class="routes">
+
+        <div class="route">
+          <div class="route-top">
+            <span class="route-num">01</span>
+            <span class="route-name">Use</span>
+          </div>
+          <div class="route-tagline">Adopt a pre-built workflow.</div>
+          <div class="route-desc">Start with VALORE's ready-made governed workflows. Add your own knowledge, and the platform puts it to work straight away — onboarding, handover, governance, content quality and more. No build, no wait.</div>
+          <div class="route-meta">
+            <div class="meta-row"><span class="meta-key">You bring</span><span class="meta-val">Your knowledge and standards</span></div>
+            <div class="meta-row"><span class="meta-key">You get</span><span class="meta-val">A governed workflow, working now</span></div>
+            <div class="meta-row"><span class="meta-key">Speed</span><span class="meta-val">Fastest path to value</span></div>
+          </div>
+          <div class="route-best"><b>Best for</b>Operators ready to act today on a proven workflow.</div>
+        </div>
+
+        <div class="route">
+          <div class="route-top">
+            <span class="route-num">02</span>
+            <span class="route-name">Build</span>
+          </div>
+          <div class="route-tagline">Co-develop a custom or vertical version.</div>
+          <div class="route-desc">Partner with Bydots to build a custom or industry-specific version of VALORE. We elicit and encode the expertise that defines your niche, so the platform reflects how your field actually works — not a generic template.</div>
+          <div class="route-meta">
+            <div class="meta-row"><span class="meta-key">You bring</span><span class="meta-val">Deep domain or vertical expertise</span></div>
+            <div class="meta-row"><span class="meta-key">You get</span><span class="meta-val">A VALORE version built for your field</span></div>
+            <div class="meta-row"><span class="meta-key">Model</span><span class="meta-val">Joint development with Bydots</span></div>
+          </div>
+          <div class="route-best"><b>Best for</b>Experts and firms with a niche worth encoding.</div>
+        </div>
+
+        <div class="route">
+          <div class="route-top">
+            <span class="route-num">03</span>
+            <span class="route-name">Market</span>
+          </div>
+          <div class="route-tagline">Take a vertical version to market.</div>
+          <div class="route-desc">Partner with Bydots to market the niche-focused versions of VALORE. You bring reach and an audience that trusts you; we provide the platform and the build. The vertical's success becomes a shared outcome.</div>
+          <div class="route-meta">
+            <div class="meta-row"><span class="meta-key">You bring</span><span class="meta-val">Audience, reach and credibility</span></div>
+            <div class="meta-row"><span class="meta-key">You get</span><span class="meta-val">A platform to take to your market</span></div>
+            <div class="meta-row"><span class="meta-key">Model</span><span class="meta-val">Marketing partnership with Bydots</span></div>
+          </div>
+          <div class="route-best"><b>Best for</b>Partners who can open a market VALORE should be in.</div>
+        </div>
+
+        <div class="route">
+          <div class="route-top">
+            <span class="route-num">04</span>
+            <span class="route-name">Originate</span>
+          </div>
+          <div class="route-tagline">Bring an idea; we develop it fast.</div>
+          <div class="route-desc">Bring a concept or a problem to Bydots. Because VALORE already handles elicitation, governance and scale, an entirely new use case can be developed rapidly on top of the platform — without starting from zero.</div>
+          <div class="route-meta">
+            <div class="meta-row"><span class="meta-key">You bring</span><span class="meta-val">An idea, concept or unsolved problem</span></div>
+            <div class="meta-row"><span class="meta-key">You get</span><span class="meta-val">A new use case, rapidly developed</span></div>
+            <div class="meta-row"><span class="meta-key">Model</span><span class="meta-val">Rapid development with Bydots</span></div>
+          </div>
+          <div class="route-best"><b>Best for</b>Innovators with a use case no one has built yet.</div>
+        </div>
+
+      </div>
+
+      <div class="core-note">
+        <span class="core-lead">Whichever route you take, the same platform underneath:</span>
+        <div class="core-tags">
+          <span class="tag">elicit</span>
+          <span class="tag">empower</span>
+          <span class="tag">govern</span>
+          <span class="tag">scale</span>
+          <span class="tag">audit</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="closer">
+      <p class="closer-text">One platform, four ways in — from <em>using it as built</em> to <em>building it together</em>.</p>
+    </div>
+
+    <div class="footer">
+      <span class="footer-id">EXT-BD-DOC-AccessRoutes-OnePager-v1.0</span>
+      <span class="footer-conf">© 2026 Bydots Pty Ltd · Confidential</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     PAGE 6 — THOUGHT STARTERS (intro + 01 + 02)
+════════════════════════════════════════════ -->
+<section class="sheet">
+  <div class="sheet-inner">
+
+    <div class="header">
+      <div class="wordmark">
+        Bydots<span class="dot"></span>
+        <span class="sub">VALORE Platform</span>
+      </div>
+      <div class="eyebrow">Thought Starters</div>
+      <h1 class="headline">What the knowledge is worth — <em>on day one, and on day one thousand.</em></h1>
+      <p class="subhead">Six use cases, read for value over time. A VALORE knowledge resource is not a one-off deliverable — it is an asset that keeps earning. These are prompts for the conversation, not a specification.</p>
+    </div>
+
+    <div class="ts-note">Each card pairs an early payoff with a later one — the same resource, compounding. Use the questions to open the discussion, not close it.</div>
+
+    <div class="starter">
+      <div class="starter-head">
+        <span class="starter-num">01</span>
+        <span class="starter-name">Staff onboarding</span>
+      </div>
+      <p class="starter-q">If a new hire's hardest question is always answered the moment they ask it — what changes about how fast your team can grow?</p>
+      <div class="arc">
+        <div class="arc-cell now">
+          <div class="arc-when">Day 1</div>
+          <div class="arc-text">The new hire learns <b>while doing real work</b> — the right guidance surfaces at the moment of the task, not buried in a manual read weeks ago.</div>
+        </div>
+        <div class="arc-join">→</div>
+        <div class="arc-cell later">
+          <div class="arc-when">Day 1000</div>
+          <div class="arc-text">Every hire since has <b>added their hard-won lessons back in</b>. The resource that trained them is sharper than the one that trained the first cohort.</div>
+        </div>
+      </div>
+      <div class="prov-label">Worth discussing</div>
+      <div class="prov"><span class="prov-mark">›</span><span class="prov-text">The current expert is <b>always available</b> to the newest person — without being interrupted.</span></div>
+      <div class="prov"><span class="prov-mark">›</span><span class="prov-text">Time-to-competence stops depending on <b>who happened to be free</b> to train them.</span></div>
+      <div class="prov"><span class="prov-mark">›</span><span class="prov-text">Onboarding becomes a system that <b>improves</b>, not a cost that repeats.</span></div>
+    </div>
+
+    <div class="starter">
+      <div class="starter-head">
+        <span class="starter-num">02</span>
+        <span class="starter-name">Business handover</span>
+      </div>
+      <p class="starter-q">If the founder's judgement no longer walks out the door with the founder — what is the business suddenly worth more to?</p>
+      <div class="arc">
+        <div class="arc-cell now">
+          <div class="arc-when">At the moment of sale</div>
+          <div class="arc-text">The business is no longer <b>"the owner plus some staff"</b>. Its know-how is an encoded, transferable asset — de-risking the deal and widening the pool of buyers who can run it.</div>
+        </div>
+        <div class="arc-join">→</div>
+        <div class="arc-cell later">
+          <div class="arc-when">Ongoing, post-sale</div>
+          <div class="arc-text">The successor operates with the founder's <b>judgement intact</b> from day one. Continuity is built in, not hoped for — and the resource keeps maturing under new ownership.</div>
+        </div>
+      </div>
+      <div class="prov-label">Worth discussing</div>
+      <div class="prov"><span class="prov-mark">›</span><span class="prov-text">Key-person risk is the quiet discount on every owner-dependent business — VALORE <b>removes the discount</b>.</span></div>
+      <div class="prov"><span class="prov-mark">›</span><span class="prov-text">A documented, governed knowledge asset <b>attracts more buyers</b> and supports a stronger multiple.</span></div>
+      <div class="prov"><span class="prov-mark">›</span><span class="prov-text">Build it years before the sale and it has been <b>earning the whole time</b> — handover is just one of its uses.</span></div>
+    </div>
+
+    <div class="footer">
+      <span class="footer-id">EXT-BD-DOC-ThoughtStarters-v1.0 · p.1 of 3</span>
+      <span class="footer-conf">© 2026 Bydots Pty Ltd · Confidential</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     PAGE 7 — THOUGHT STARTERS (03 + 04)
+════════════════════════════════════════════ -->
+<section class="sheet">
+  <div class="sheet-inner">
+
+    <div style="padding-top: 56px"></div>
+
+    <div class="starter" style="margin-top: 0">
+      <div class="starter-head">
+        <span class="starter-num">03</span>
+        <span class="starter-name">Governance</span>
+      </div>
+      <p class="starter-q">If every piece of work is checked against the standard before it ships — how much rework, and how much risk, simply never happens?</p>
+      <div class="arc">
+        <div class="arc-cell now">
+          <div class="arc-when">First run</div>
+          <div class="arc-text">Work is measured against <b>encoded expertise</b> as it is produced — by people and by agents alike. Drift is caught early, not discovered late.</div>
+        </div>
+        <div class="arc-join">→</div>
+        <div class="arc-cell later">
+          <div class="arc-when">After a thousand runs</div>
+          <div class="arc-text">Every pass has refined the standard. The organisation now governs at scale on a benchmark <b>no single person has to hold in their head</b>.</div>
+        </div>
+      </div>
+      <div class="prov-label">Worth discussing</div>
+      <div class="prov"><span class="prov-mark">›</span><span class="prov-text">As AI agents do more of the work, <b>the check on that work</b> becomes the thing that matters most.</span></div>
+      <div class="prov"><span class="prov-mark">›</span><span class="prov-text">Governance shifts from periodic audit to <b>continuous, built-in</b> — and cheaper for being continuous.</span></div>
+      <div class="prov"><span class="prov-mark">›</span><span class="prov-text">The standard is owned by the organisation, not <b>resident in one expert</b> who might leave.</span></div>
+    </div>
+
+    <div class="starter">
+      <div class="starter-head">
+        <span class="starter-num">04</span>
+        <span class="starter-name">Messaging consistency</span>
+      </div>
+      <p class="starter-q">If every message — from anyone, human or agent — carries the same voice and standard of care, what does the brand stop leaking?</p>
+      <div class="arc">
+        <div class="arc-cell now">
+          <div class="arc-when">First campaign</div>
+          <div class="arc-text">The voice, position and standard are <b>encoded once</b>. Every communication is drafted against them — no more depending on who wrote it.</div>
+        </div>
+        <div class="arc-join">→</div>
+        <div class="arc-cell later">
+          <div class="arc-when">A thousand messages later</div>
+          <div class="arc-text">Consistency holds across <b>every channel, team and tool</b> — even as headcount turns over and volume grows. The brand voice is infrastructure.</div>
+        </div>
+      </div>
+      <div class="prov-label">Worth discussing</div>
+      <div class="prov"><span class="prov-mark">›</span><span class="prov-text">Brand erosion is <b>death by a thousand off-key messages</b> — most of them never reviewed.</span></div>
+      <div class="prov"><span class="prov-mark">›</span><span class="prov-text">Scaling content output no longer means <b>scaling the risk</b> of inconsistency.</span></div>
+      <div class="prov"><span class="prov-mark">›</span><span class="prov-text">A new team member or a new agent sounds <b>on-brand on day one</b>.</span></div>
+    </div>
+
+    <div class="footer">
+      <span class="footer-id">EXT-BD-DOC-ThoughtStarters-v1.0 · p.2 of 3</span>
+      <span class="footer-conf">© 2026 Bydots Pty Ltd · Confidential</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     PAGE 8 — THOUGHT STARTERS (05 + 06 + closer)
+════════════════════════════════════════════ -->
+<section class="sheet">
+  <div class="sheet-inner">
+
+    <div style="padding-top: 56px"></div>
+
+    <div class="starter" style="margin-top: 0">
+      <div class="starter-head">
+        <span class="starter-num">05</span>
+        <span class="starter-name">Content quality assessment</span>
+      </div>
+      <p class="starter-q">If nothing leaves the building below the expert benchmark — what is the cost of the things that used to slip through?</p>
+      <div class="arc">
+        <div class="arc-cell now">
+          <div class="arc-when">First draft assessed</div>
+          <div class="arc-text">Output is scored against the <b>expert benchmark</b> before release — a clear pass-or-revise, not a subjective opinion that depends on the reviewer.</div>
+        </div>
+        <div class="arc-join">→</div>
+        <div class="arc-cell later">
+          <div class="arc-when">As volume compounds</div>
+          <div class="arc-text">The benchmark has learned from every assessment. Quality <b>rises over time</b> instead of drifting — and the bar holds however much you produce.</div>
+        </div>
+      </div>
+      <div class="prov-label">Worth discussing</div>
+      <div class="prov"><span class="prov-mark">›</span><span class="prov-text">Quality control stops being a <b>bottleneck on one senior person's time</b>.</span></div>
+      <div class="prov"><span class="prov-mark">›</span><span class="prov-text">When AI generates the content, an <b>encoded quality gate</b> is what keeps it trustworthy.</span></div>
+      <div class="prov"><span class="prov-mark">›</span><span class="prov-text">"Good enough" becomes a <b>measurable standard</b>, not a mood.</span></div>
+    </div>
+
+    <div class="starter">
+      <div class="starter-head">
+        <span class="starter-num">06</span>
+        <span class="starter-name">Decision audit trails</span>
+      </div>
+      <p class="starter-q">If you can always show how and why a decision was made — what becomes defensible that used to be a liability?</p>
+      <div class="arc">
+        <div class="arc-cell now">
+          <div class="arc-when">At the moment of decision</div>
+          <div class="arc-text">The decision is recorded <b>with its reasoning and its basis</b> — a traceable record captured as the call is made, not reconstructed afterwards.</div>
+        </div>
+        <div class="arc-join">→</div>
+        <div class="arc-cell later">
+          <div class="arc-when">Years on</div>
+          <div class="arc-text">An accumulated body of <b>reviewable decisions</b> — defensible under scrutiny, and a teaching record that informs the judgement of everyone who comes after.</div>
+        </div>
+      </div>
+      <div class="prov-label">Worth discussing</div>
+      <div class="prov"><span class="prov-mark">›</span><span class="prov-text">Regulators, buyers and boards increasingly ask <b>"show me why"</b> — and accept nothing less.</span></div>
+      <div class="prov"><span class="prov-mark">›</span><span class="prov-text">An audit trail is also a <b>learning asset</b> — past judgement made visible to future decision-makers.</span></div>
+      <div class="prov"><span class="prov-mark">›</span><span class="prov-text">When agents make or shape decisions, the trail is what keeps a human <b>accountable and in command</b>.</span></div>
+    </div>
+
+    <div class="closer-ts">
+      <div class="closer-label">The through-line</div>
+      <p class="closer-ts-text">In every use case, the resource you build on day one is <em>worth more on day one thousand</em> — because it has been governing, learning and compounding the whole time.</p>
+    </div>
+
+    <div class="footer">
+      <span class="footer-id">EXT-BD-DOC-ThoughtStarters-v1.0 · p.3 of 3</span>
+      <span class="footer-conf">© 2026 Bydots Pty Ltd · Confidential</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     PAGE 9 — BACK COVER (CONTACT)
+════════════════════════════════════════════ -->
+<section class="sheet">
+  <div class="sheet-inner cover-inner">
+
+    <svg class="back-graph" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g stroke="#0A0A0A" stroke-width="1">
+        <line x1="100" y1="140" x2="280" y2="200"/>
+        <line x1="280" y1="200" x2="460" y2="120"/>
+        <line x1="280" y1="200" x2="220" y2="380"/>
+        <line x1="280" y1="200" x2="420" y2="340"/>
+        <line x1="460" y1="120" x2="540" y2="260"/>
+        <line x1="220" y1="380" x2="420" y2="340"/>
+        <line x1="220" y1="380" x2="140" y2="500"/>
+        <line x1="420" y1="340" x2="540" y2="260"/>
+        <line x1="420" y1="340" x2="480" y2="500"/>
+        <line x1="140" y1="500" x2="320" y2="520"/>
+        <line x1="320" y1="520" x2="480" y2="500"/>
+      </g>
+      <g fill="#0A0A0A">
+        <circle cx="100" cy="140" r="6"/>
+        <circle cx="460" cy="120" r="6"/>
+        <circle cx="540" cy="260" r="6"/>
+        <circle cx="220" cy="380" r="6"/>
+        <circle cx="140" cy="500" r="6"/>
+        <circle cx="480" cy="500" r="6"/>
+        <circle cx="320" cy="520" r="6"/>
+        <circle cx="280" cy="200" r="6"/>
+      </g>
+      <circle cx="420" cy="340" r="9" fill="#FF7A1A"/>
+    </svg>
+
+    <div class="back-frame">
+
+      <div class="cover-top">
+        <div class="wordmark">
+          Bydots<span class="dot"></span>
+          <span class="sub">VALORE Platform</span>
+        </div>
+        <div class="back-eyebrow">Continue the conversation</div>
+      </div>
+
+      <div class="back-mid">
+        <h2 class="back-h">Talk to us about what your knowledge could be worth<span class="period">.</span></h2>
+        <p class="back-sub">Bring a use case, a niche, or just a question. We will tell you straight whether VALORE is the right fit — and what the first useful step looks like.</p>
+
+        <div class="contact">
+          <div class="contact-cell">
+            <span class="contact-key">Web</span>
+            <span class="contact-val">BYDOTS.com</span>
+          </div>
+          <div class="contact-cell">
+            <span class="contact-key">Email</span>
+            <span class="contact-val">solutions@bydots.com</span>
+          </div>
+          <div class="contact-cell">
+            <span class="contact-key">Direct</span>
+            <span class="contact-val">+61 414 657 908</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="back-bottom">
+        <div class="back-conf">© 2026 Bydots Pty Ltd · All rights reserved. Confidential — provided to the named recipient only. No part of this document may be reproduced, distributed, or disclosed without the prior written consent of Bydots Pty Ltd.</div>
+        <div class="back-end">End of document</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

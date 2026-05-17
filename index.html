@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bydots — Expertise, made operational.</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+
+/* ── HERO ─────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-graph {
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 480px;
+  height: 480px;
+  opacity: 0.08;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 48px;
+  width: 100%;
+}
+
+.hero-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--orange);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 20px;
+  height: 2px;
+  background: var(--orange);
+  flex-shrink: 0;
+}
+
+.hero-headline {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(52px, 6.5vw, 80px);
+  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  color: var(--paper);
+  margin-bottom: 28px;
+  max-width: 740px;
+}
+.hero-headline .period { color: var(--orange); }
+
+.hero-subhead {
+  font-size: 18px;
+  color: rgba(250,250,250,0.65);
+  line-height: 1.65;
+  max-width: 580px;
+  margin-bottom: 44px;
+}
+
+.hero-ctas {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.hero-note {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: rgba(250,250,250,0.32);
+  letter-spacing: 0.06em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hero-note .node-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--orange);
+  border-radius: 50%;
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+/* ── WHO IT'S FOR ─────────────────────────── */
+.who-section {
+  background: var(--paper);
+  padding: 100px 0;
+}
+
+.who-intro {
+  max-width: 560px;
+  margin-bottom: 56px;
+}
+
+.persona-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.persona-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  border-top: 3px solid var(--orange);
+  padding: 28px;
+  box-shadow: var(--shadow-1);
+}
+
+.persona-title {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+.persona-body {
+  font-size: 14px;
+  color: var(--steel);
+  line-height: 1.65;
+}
+
+/* ── WHAT IT IS ───────────────────────────── */
+.what-section {
+  background: var(--ink);
+  padding: 100px 0;
+}
+
+.what-intro {
+  max-width: 600px;
+  margin-bottom: 56px;
+}
+
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 36px;
+}
+
+.pillar-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  border-top: 3px solid var(--orange);
+  padding: 28px;
+}
+
+.pillar-title {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--paper);
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.pillar-body {
+  font-size: 14px;
+  color: rgba(250,250,250,0.5);
+  line-height: 1.65;
+}
+
+.modal-bar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 20px 28px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+}
+
+.modal-bar-lead {
+  font-family: 'Fraunces', serif;
+  font-size: 14px;
+  font-style: italic;
+  color: rgba(250,250,250,0.55);
+  flex-shrink: 0;
+}
+
+.modal-pills {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.modal-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: rgba(250,250,250,0.55);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 5px;
+  padding: 5px 12px;
+  letter-spacing: 0.04em;
+}
+
+/* ── USE CASES ────────────────────────────── */
+.uses-section {
+  background: var(--white);
+  padding: 100px 0;
+}
+
+.uses-intro {
+  max-width: 560px;
+  margin-bottom: 56px;
+}
+
+.use-cases-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.use-case-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 28px;
+  box-shadow: var(--shadow-1);
+}
+
+.use-case-num {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 4px 9px;
+  border-radius: 5px;
+  margin-bottom: 16px;
+  letter-spacing: 0.04em;
+}
+
+.use-case-title {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.use-case-body {
+  font-size: 13px;
+  color: var(--steel);
+  line-height: 1.65;
+}
+
+/* ── HOW IT FLOWS ─────────────────────────── */
+.flow-section {
+  background: var(--paper);
+  padding: 100px 0;
+}
+
+.flow-intro {
+  max-width: 540px;
+  margin-bottom: 56px;
+}
+
+.flow-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 36px;
+}
+
+.flow-col {
+  border-radius: 8px;
+  padding: 32px;
+}
+
+.flow-col.linear {
+  background: var(--mist);
+}
+
+.flow-col.governed {
+  background: var(--peach);
+  border: 1px solid var(--peachln);
+}
+
+.flow-col-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--steel);
+  margin-bottom: 8px;
+}
+
+.flow-col.governed .flow-col-label {
+  color: var(--orange);
+}
+
+.flow-col-title {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+
+.flow-col-desc {
+  font-size: 14px;
+  color: var(--graphite);
+  line-height: 1.65;
+  margin-bottom: 28px;
+}
+
+/* Flow diagram — pure CSS/HTML boxes */
+.flow-diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+}
+
+.flow-node {
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.flow-node.src-node {
+  background: rgba(255,255,255,0.7);
+  border: 1px solid rgba(0,0,0,0.1);
+  color: var(--ink);
+}
+
+.flow-col.governed .flow-node.src-node {
+  background: rgba(255,255,255,0.65);
+  border-color: var(--peachln);
+}
+
+.flow-node.core-node {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.flow-node.dest-node {
+  background: rgba(255,255,255,0.7);
+  border: 1px solid rgba(0,0,0,0.1);
+  color: var(--ink);
+}
+
+.flow-col.governed .flow-node.dest-node {
+  background: rgba(255,255,255,0.65);
+  border-color: var(--peachln);
+}
+
+.flow-arrow {
+  align-self: center;
+  color: var(--orange);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 6px 0;
+  line-height: 1;
+}
+
+.flow-loop-tag {
+  margin-top: 8px;
+  padding: 8px 12px;
+  border: 1.5px dashed var(--orange);
+  border-radius: 5px;
+  font-size: 11px;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--graphite);
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+.flow-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2px;
+  transition: border-color 0.15s, color 0.15s;
+}
+.flow-link:hover {
+  color: var(--orange);
+  border-color: var(--orange);
+}
+
+/* ── CTA BANNER ───────────────────────────── */
+.cta-section {
+  position: relative;
+  background: var(--ink);
+  padding: 80px 0;
+  overflow: hidden;
+  text-align: center;
+}
+
+.cta-graph {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.cta-content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.cta-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.cta-eyebrow::before {
+  content: '';
+  width: 20px;
+  height: 2px;
+  background: var(--orange);
+  flex-shrink: 0;
+}
+
+.cta-headline {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(36px, 4.5vw, 48px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--paper);
+  margin-bottom: 16px;
+}
+.cta-headline .period { color: var(--orange); }
+
+.cta-subhead {
+  font-size: 17px;
+  color: rgba(250,250,250,0.55);
+  line-height: 1.65;
+  margin-bottom: 40px;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════════ -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-brand">Bydots<span class="dot"></span></a>
+  <div class="nav-links">
+    <a href="platform.html">Platform</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <a href="contact.html" class="nav-cta">Start a conversation</a>
+</nav>
+
+
+<!-- ════════════════════════════════════════════
+     1. HERO
+════════════════════════════════════════════ -->
+<section class="hero">
+
+  <!-- Decorative node graph — right side -->
+  <svg class="hero-graph" viewBox="0 0 480 480" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g stroke="#FAFAFA" stroke-width="1.2">
+      <line x1="60"  y1="90"  x2="200" y2="140"/>
+      <line x1="200" y1="140" x2="380" y2="70"/>
+      <line x1="200" y1="140" x2="150" y2="290"/>
+      <line x1="200" y1="140" x2="340" y2="250"/>
+      <line x1="380" y1="70"  x2="440" y2="190"/>
+      <line x1="150" y1="290" x2="340" y2="250"/>
+      <line x1="150" y1="290" x2="80"  y2="400"/>
+      <line x1="340" y1="250" x2="440" y2="190"/>
+      <line x1="340" y1="250" x2="390" y2="400"/>
+      <line x1="80"  y1="400" x2="240" y2="420"/>
+      <line x1="240" y1="420" x2="390" y2="400"/>
+      <line x1="60"  y1="90"  x2="150" y2="290"/>
+      <line x1="380" y1="70"  x2="340" y2="250"/>
+    </g>
+    <g fill="#FAFAFA">
+      <circle cx="60"  cy="90"  r="4"/>
+      <circle cx="380" cy="70"  r="4"/>
+      <circle cx="440" cy="190" r="4"/>
+      <circle cx="150" cy="290" r="4"/>
+      <circle cx="80"  cy="400" r="4"/>
+      <circle cx="390" cy="400" r="4"/>
+      <circle cx="240" cy="420" r="4"/>
+    </g>
+    <circle cx="200" cy="140" r="7" fill="#FF7A1A" opacity="0.9"/>
+    <circle cx="340" cy="250" r="5" fill="#FAFAFA"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">VALORE Platform</div>
+    <h1 class="hero-headline">Expertise, made operational<span class="period">.</span></h1>
+    <p class="hero-subhead">A governed system for moving what experts know into work that scales — for humans and AI agents alike, accountable every time it runs.</p>
+    <div class="hero-ctas">
+      <a href="platform.html" class="btn btn-primary">See the platform →</a>
+      <a href="platform-introduction.html" class="btn btn-ghost">Download introduction</a>
+    </div>
+    <div class="hero-note">
+      <span class="node-dot"></span>
+      Books teach. Simulators train. VALORE governs.
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     2. WHO IT'S FOR
+════════════════════════════════════════════ -->
+<section class="who-section">
+  <div class="container">
+
+    <div class="who-intro">
+      <div class="section-eyebrow">Who it's for</div>
+      <h2 class="section-h2">Built for the people who own the knowledge<em>.</em></h2>
+    </div>
+
+    <div class="persona-grid">
+
+      <div class="persona-card">
+        <div class="persona-title">SME Operator</div>
+        <p class="persona-body">You have years of hard-won process. VALORE makes it reproducible, auditable and scalable — without losing the nuance.</p>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-title">Startup Founder</div>
+        <p class="persona-body">You're building with AI but your best asset is still in your head. VALORE encodes it before it walks out the door.</p>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-title">Program Manager</div>
+        <p class="persona-body">You need governance across people and agents. VALORE provides the audit trail every step of the way.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     3. WHAT IT IS
+════════════════════════════════════════════ -->
+<section class="what-section">
+  <div class="container">
+
+    <div class="what-intro">
+      <div class="section-eyebrow">The platform</div>
+      <h2 class="section-h2 on-dark">One coordinated system for knowledge work<em>.</em></h2>
+      <p class="section-lead on-dark">Suites, apps and agents that capture what an expert knows, put it to work, and keep every result accountable.</p>
+    </div>
+
+    <div class="pillars-grid">
+
+      <div class="pillar-card">
+        <div class="pillar-title">Suites</div>
+        <p class="pillar-body">Coordinated capability sets for a whole class of knowledge work, end to end.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-title">Apps</div>
+        <p class="pillar-body">Focused tools for capture, review, handover and more — used directly by people.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-title">Agents</div>
+        <p class="pillar-body">Governed automations that carry out knowledge tasks under the same accountability framework.</p>
+      </div>
+
+    </div>
+
+    <div class="modal-bar">
+      <span class="modal-bar-lead">Input is multimodal:</span>
+      <div class="modal-pills">
+        <span class="modal-pill">conversation</span>
+        <span class="modal-pill">documents</span>
+        <span class="modal-pill">procedures</span>
+        <span class="modal-pill">voice</span>
+        <span class="modal-pill">records</span>
+        <span class="modal-pill">live work</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     4. USE CASES
+════════════════════════════════════════════ -->
+<section class="uses-section">
+  <div class="container">
+
+    <div class="uses-intro">
+      <div class="section-eyebrow">Typical uses</div>
+      <h2 class="section-h2">Six places VALORE creates lasting value<em>.</em></h2>
+    </div>
+
+    <div class="use-cases-grid">
+
+      <div class="use-case-card">
+        <span class="use-case-num">01</span>
+        <div class="use-case-title">Staff onboarding</div>
+        <p class="use-case-body">Including a learn-while-working process. People build capability on real tasks, not by reading manuals.</p>
+      </div>
+
+      <div class="use-case-card">
+        <span class="use-case-num">02</span>
+        <div class="use-case-title">Business handover</div>
+        <p class="use-case-body">An owner's or expert's accumulated judgement transferred intact — not lost when they exit.</p>
+      </div>
+
+      <div class="use-case-card">
+        <span class="use-case-num">03</span>
+        <div class="use-case-title">Governance</div>
+        <p class="use-case-body">Work stays aligned to the standards and judgement the organisation actually relies on.</p>
+      </div>
+
+      <div class="use-case-card">
+        <span class="use-case-num">04</span>
+        <div class="use-case-title">Messaging consistency</div>
+        <p class="use-case-body">Every communication carries the same voice, position and standard of care.</p>
+      </div>
+
+      <div class="use-case-card">
+        <span class="use-case-num">05</span>
+        <div class="use-case-title">Content quality assessment</div>
+        <p class="use-case-body">Output measured against encoded expertise before it goes anywhere.</p>
+      </div>
+
+      <div class="use-case-card">
+        <span class="use-case-num">06</span>
+        <div class="use-case-title">Decision audit trails</div>
+        <p class="use-case-body">A traceable record of how and why a decision was reached — accountable after the fact.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     5. HOW IT FLOWS
+════════════════════════════════════════════ -->
+<section class="flow-section">
+  <div class="container">
+
+    <div class="flow-intro">
+      <div class="section-eyebrow">How it works</div>
+      <h2 class="section-h2">Knowledge flows in two shapes<em>.</em></h2>
+    </div>
+
+    <div class="flow-columns">
+
+      <!-- Linear transfer -->
+      <div class="flow-col linear">
+        <div class="flow-col-label">Shape one</div>
+        <div class="flow-col-title">Linear transfer</div>
+        <p class="flow-col-desc">Expertise moved to where it is needed. Knowledge travels from a source, through VALORE, to a destination.</p>
+        <div class="flow-diagram">
+          <div class="flow-node src-node">Source</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-node core-node">VALORE</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-node dest-node">Destination</div>
+        </div>
+      </div>
+
+      <!-- Governed loop -->
+      <div class="flow-col governed">
+        <div class="flow-col-label">Shape two</div>
+        <div class="flow-col-title">Governed loop</div>
+        <p class="flow-col-desc">Work checked, then fed back to improve. The platform gets sharper every time it runs.</p>
+        <div class="flow-diagram">
+          <div class="flow-node src-node">Input</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-node core-node">VALORE</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-node dest-node">Output</div>
+          <div class="flow-loop-tag">↺ Feedback — improves every run</div>
+        </div>
+      </div>
+
+    </div>
+
+    <a href="platform.html" class="flow-link">See the full flow diagrams →</a>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     6. CTA BANNER
+════════════════════════════════════════════ -->
+<section class="cta-section">
+
+  <!-- Very faint full-width node graph decoration -->
+  <svg class="cta-graph" viewBox="0 0 1200 320" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g stroke="#FAFAFA" stroke-width="1">
+      <line x1="0"    y1="80"  x2="120" y2="140"/>
+      <line x1="120"  y1="140" x2="300" y2="60"/>
+      <line x1="120"  y1="140" x2="200" y2="260"/>
+      <line x1="300"  y1="60"  x2="480" y2="130"/>
+      <line x1="300"  y1="60"  x2="420" y2="200"/>
+      <line x1="480"  y1="130" x2="600" y2="60"/>
+      <line x1="480"  y1="130" x2="560" y2="240"/>
+      <line x1="200"  y1="260" x2="420" y2="200"/>
+      <line x1="420"  y1="200" x2="560" y2="240"/>
+      <line x1="600"  y1="60"  x2="760" y2="120"/>
+      <line x1="760"  y1="120" x2="880" y2="50"/>
+      <line x1="760"  y1="120" x2="820" y2="260"/>
+      <line x1="880"  y1="50"  x2="1020" y2="140"/>
+      <line x1="1020" y1="140" x2="1100" y2="60"/>
+      <line x1="1020" y1="140" x2="1060" y2="280"/>
+      <line x1="1100" y1="60"  x2="1200" y2="120"/>
+      <line x1="820"  y1="260" x2="1060" y2="280"/>
+      <line x1="560"  y1="240" x2="820" y2="260"/>
+    </g>
+    <g fill="#FAFAFA">
+      <circle cx="0"    cy="80"  r="4"/>
+      <circle cx="120"  cy="140" r="4"/>
+      <circle cx="300"  cy="60"  r="4"/>
+      <circle cx="480"  cy="130" r="4"/>
+      <circle cx="200"  cy="260" r="4"/>
+      <circle cx="420"  cy="200" r="4"/>
+      <circle cx="560"  cy="240" r="4"/>
+      <circle cx="600"  cy="60"  r="4"/>
+      <circle cx="760"  cy="120" r="4"/>
+      <circle cx="880"  cy="50"  r="4"/>
+      <circle cx="820"  cy="260" r="4"/>
+      <circle cx="1020" cy="140" r="4"/>
+      <circle cx="1100" cy="60"  r="4"/>
+      <circle cx="1060" cy="280" r="4"/>
+      <circle cx="1200" cy="120" r="4"/>
+    </g>
+  </svg>
+
+  <div class="cta-content">
+    <div class="cta-eyebrow">Start here</div>
+    <h2 class="cta-headline">Talk to us about what your knowledge could be worth<span class="period">.</span></h2>
+    <p class="cta-subhead">Bring a use case, a niche, or just a question.</p>
+    <a href="contact.html" class="btn btn-primary">Start a conversation →</a>
+  </div>
+
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="footer-grid">
+
+    <div>
+      <div class="footer-brand">Bydots<span class="dot"></span></div>
+      <p class="footer-desc">A governed system for moving expert knowledge into work that scales.</p>
+    </div>
+
+    <div>
+      <div class="footer-col-head">Platform</div>
+      <ul class="footer-col-links">
+        <li><a href="platform.html">VALORE Platform</a></li>
+        <li><a href="platform-introduction.html">Platform Introduction</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-col-head">Company</div>
+      <ul class="footer-col-links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-col-head">Contact</div>
+      <ul class="footer-col-links">
+        <li><a href="https://bydots.com">BYDOTS.com</a></li>
+        <li><a href="mailto:solutions@bydots.com">solutions@bydots.com</a></li>
+        <li><a href="tel:+61414657908">+61 414 657 908</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Bydots Pty Ltd · All rights reserved.</span>
+    <span class="footer-prov">Built on VALORE Platform v1.0</span>
+  </div>
+</footer>
+
+</body>
+</html>
